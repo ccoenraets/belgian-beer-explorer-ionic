@@ -1,0 +1,34 @@
+<ion-view view-title="Belgian Beer Explorer">
+
+    <div class="bar bar-subheader item-input-inset">
+        <label class="item-input-wrapper" id="search-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input id="searchKey" type="search" placeholder="Search" autocorrect="off" ng-model="searchKey" ng-change="loadData()">
+        </label>
+        <button class="button button-clear icon ion-close-round" ng-click="clearSearch()"></button>
+    </div>
+
+    <ion-content id="content" class="has-header has-subheader has-footer" delegate-handle="myScroll">
+
+        <ion-list>
+            <ion-item ng-repeat="product in products" href="#/product/{{product.name}}/{{product.brewery}}/{{product.alcohol}}/{{product.tags}}">
+                <span ng-bind="product.name"></span>
+                <p><i class="icon ion-pricetags placeholder-icon"></i><span ng-bind="product.tags"></span></p>
+                <span class="badge badge-assertive" ng-bind="formatAlcoholLevel(product.alcohol)"></span>
+            </ion-item>
+        </ion-list>
+
+        <ion-infinite-scroll
+                ng-if="isMoreData()"
+                on-infinite="loadMoreData()"
+                distance="1%">
+        </ion-infinite-scroll>
+
+    </ion-content>
+
+    <div class="bar bar-footer">
+        <div class="slider-title">% alcohol</div>
+        <div id="slider"></div>
+    </div>
+
+</ion-view>

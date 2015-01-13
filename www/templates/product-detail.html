@@ -1,0 +1,28 @@
+<ion-view title="{{product.name }}" class="card-bg">
+
+    <ion-content has-header="true" padding="true">
+
+        <div class="list card">
+            <div class="item">
+                <h2>{{product.name }}</h2>
+                <p>{{product.brewery}}</p>
+            </div>
+            <div class="item item-body" style="text-align: center">
+                <div>
+                    <img src="pics/generic.png" style="vertical-align: middle">
+                    <span class="bubble" ng-bind="formatAlcoholLevel(product.alcohol)"></span>
+                </div>
+            </div>
+            <ion-item class="item-icon-left" ng-click="setSearchKey(product.brewery)">
+                <i class="icon ion-home placeholder-icon"></i>
+                <span ng-bind="product.brewery"></span>
+            </ion-item>
+            <ion-item ng-repeat="tag in tags" class="item-icon-left" ng-click="setSearchKey(tag)">
+                <i class="icon ion-pricetag placeholder-icon"></i>
+                <span ng-bind="tag"></span>
+            </ion-item>
+        </div>
+
+    </ion-content>
+
+</ion-view>
